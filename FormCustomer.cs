@@ -33,7 +33,7 @@ namespace StockMarket
         {
             string query = "INSERT INTO `test` VALUES (NULL , @Name , @Gold , @Silver , @Copper);";
 
-            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
+            string MySQLConnectionString = "DATA_INFO";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
