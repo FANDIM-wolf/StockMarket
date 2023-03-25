@@ -36,7 +36,7 @@ namespace StockMarket
         {
             string query = "INSERT INTO `test` (`id`, `name`) VALUES (NULL , 'Mikis');";
 
-            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
+            string MySQLConnectionString = "DATA_INFO";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -82,7 +82,7 @@ namespace StockMarket
         {
             string query = "UPDATE `test` SET name=@Name , gold=" + dataGridView1.CurrentRow.Cells[2].Value.ToString() + " , silver=" + dataGridView1.CurrentRow.Cells[3].Value.ToString() + " , copper=" + dataGridView1.CurrentRow.Cells[4].Value.ToString() + " WHERE `id` = @id;";
 
-            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
+            string MySQLConnectionString = "DATA_INFO";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -116,7 +116,7 @@ namespace StockMarket
         {
             string query = "DELETE FROM `test`  WHERE `id` = @id ;";
 
-            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
+            string MySQLConnectionString = "DATA_INFO";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -153,7 +153,7 @@ namespace StockMarket
         {
 
             string sql = query;
-            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
+            string MySQLConnectionString = "DATA_INFO";
             MySqlConnection con = new MySqlConnection(MySQLConnectionString);
             MySqlCommand cmd = new MySqlCommand(sql, con);
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
