@@ -30,13 +30,13 @@ namespace StockMarket
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -55,8 +55,34 @@ namespace StockMarket
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Location = new System.Drawing.Point(72, 281);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1238, 514);
+            this.panel1.Size = new System.Drawing.Size(1228, 514);
             this.panel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Firebrick;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Snow;
+            this.button3.Location = new System.Drawing.Point(531, -3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(225, 50);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Удалить";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.SpringGreen;
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Snow;
+            this.button2.Location = new System.Drawing.Point(273, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(225, 47);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Обновить";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
@@ -67,11 +93,11 @@ namespace StockMarket
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 91);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1238, 420);
+            this.dataGridView1.Size = new System.Drawing.Size(1228, 458);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -80,9 +106,10 @@ namespace StockMarket
             this.button1.BackColor = System.Drawing.Color.Turquoise;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Snow;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 85);
+            this.button1.Size = new System.Drawing.Size(225, 47);
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить клиента";
             this.button1.UseVisualStyleBackColor = false;
@@ -91,7 +118,7 @@ namespace StockMarket
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(833, 3);
+            this.textBox1.Location = new System.Drawing.Point(823, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(391, 26);
             this.textBox1.TabIndex = 0;
@@ -106,7 +133,7 @@ namespace StockMarket
             this.panel2.ForeColor = System.Drawing.Color.Snow;
             this.panel2.Location = new System.Drawing.Point(-2, -3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1393, 248);
+            this.panel2.Size = new System.Drawing.Size(1383, 248);
             this.panel2.TabIndex = 1;
             // 
             // label1
@@ -120,36 +147,11 @@ namespace StockMarket
             this.label1.Text = "Биржа Плюс";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.SpringGreen;
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Snow;
-            this.button2.Location = new System.Drawing.Point(231, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 85);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Обновить";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Firebrick;
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Snow;
-            this.button3.Location = new System.Drawing.Point(472, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(225, 85);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1386, 880);
+            this.ClientSize = new System.Drawing.Size(1376, 880);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";

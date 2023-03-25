@@ -90,7 +90,7 @@ namespace StockMarket
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(62, 293);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(826, 614);
+            this.panel3.Size = new System.Drawing.Size(826, 461);
             this.panel3.TabIndex = 2;
             // 
             // button1
@@ -98,7 +98,7 @@ namespace StockMarket
             this.button1.BackColor = System.Drawing.Color.Turquoise;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Snow;
-            this.button1.Location = new System.Drawing.Point(108, 245);
+            this.button1.Location = new System.Drawing.Point(108, 275);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(225, 51);
             this.button1.TabIndex = 3;
@@ -128,7 +128,7 @@ namespace StockMarket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 926);
+            this.ClientSize = new System.Drawing.Size(977, 834);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

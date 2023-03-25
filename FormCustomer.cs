@@ -31,9 +31,9 @@ namespace StockMarket
 
         private void InsertQuery()
         {
-            string query = "INSERT INTO `test` VALUES (NULL , @Name);";
+            string query = "INSERT INTO `test` VALUES (NULL , @Name , @Gold , @Silver , @Copper);";
 
-            string MySQLConnectionString = "DATA ABOUT CONNECTION";
+            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -43,7 +43,9 @@ namespace StockMarket
 
             commandDataBase.CommandType = CommandType.Text;
             commandDataBase.Parameters.Add("@Name", MySqlDbType.VarChar).Value = textBox1.Text;
-
+            commandDataBase.Parameters.Add("@Gold", MySqlDbType.VarChar).Value = 0;
+            commandDataBase.Parameters.Add("@Silver", MySqlDbType.VarChar).Value = 0;
+            commandDataBase.Parameters.Add("@Copper", MySqlDbType.VarChar).Value = 0;
             try
             {
 
@@ -62,6 +64,9 @@ namespace StockMarket
 
         }
 
-        
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

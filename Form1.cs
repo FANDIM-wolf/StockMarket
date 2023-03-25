@@ -17,7 +17,7 @@ namespace StockMarket
         {
 
             InitializeComponent();
-            Display();
+            DisplayAndSearch("SELECT `id` , `name`  , `gold` , `silver` , `copper` FROM `test` WHERE `name` LIKE '%" + textBox1.Text + "%'", dataGridView1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -27,23 +27,23 @@ namespace StockMarket
 
         private void Display()
         {
-            DisplayAndSearch("SELECT `id` , `name` FROM `test`; ",dataGridView1);
+            DisplayAndSearch("SELECT `id` , `name` ,  `gold` , `silver` , `copper` FROM `test`  WHERE `name` LIKE '%" + textBox1.Text + "%'", dataGridView1);
         }
 
-        
+
 
         private void runQuery()
         {
             string query = "INSERT INTO `test` (`id`, `name`) VALUES (NULL , 'Mikis');";
 
-            string MySQLConnectionString = "DATA ABOUT CONNECTION";
+            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
             MySqlCommand commandDataBase = new MySqlCommand(query, DataBaseConnection);
-            
+
             commandDataBase.CommandTimeout = 60;
-           
+
             try
             {
 
@@ -54,11 +54,11 @@ namespace StockMarket
 
                 MessageBox.Show("Query successfully executed");
 
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 MessageBox.Show("Query error: " + e.Message);
             }
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -80,9 +80,9 @@ namespace StockMarket
 
         private void UpdateQuery(string id)
         {
-            string query = "UPDATE `tests` SET name=@Name  WHERE `id` = @id ;";
+            string query = "UPDATE `test` SET name=@Name , gold=" + dataGridView1.CurrentRow.Cells[2].Value.ToString() + " , silver=" + dataGridView1.CurrentRow.Cells[3].Value.ToString() + " , copper=" + dataGridView1.CurrentRow.Cells[4].Value.ToString() + " WHERE `id` = @id;";
 
-            string MySQLConnectionString = "DATA ABOUT CONNECTION";
+            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -91,31 +91,32 @@ namespace StockMarket
             commandDataBase.CommandTimeout = 60;
 
             commandDataBase.CommandType = CommandType.Text;
-            commandDataBase.Parameters.Add("@Name", MySqlDbType.VarChar).Value = textBox1.Text;
+            commandDataBase.Parameters.Add("@Name", MySqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             commandDataBase.Parameters.Add("@id", MySqlDbType.Int64).Value = id;
-            try
-            {
+            /*
+            commandDataBase.Parameters.Add("@Gold", MySqlDbType.Int64).Value = 3;
+            commandDataBase.Parameters.Add("@Silver", MySqlDbType.Int64).Value = 32;
+            commandDataBase.Parameters.Add("@Copper", MySqlDbType.Int64).Value = 34;
+            commandDataBase.Parameters.Add("@id", MySqlDbType.Int64).Value = id;
+           */
 
-                DataBaseConnection.Open();
-                //commandDataBase.CommandTimeout = 60;
-                MySqlDataReader myReader = commandDataBase.ExecuteReader();
-                DataBaseConnection.Close();
+            DataBaseConnection.Open();
+            commandDataBase.CommandTimeout = 2000;
+            MySqlDataReader myReader = commandDataBase.ExecuteReader();
+            DataBaseConnection.Close();
 
-                MessageBox.Show("Query successfully executed");
+            MessageBox.Show("Query successfully executed");
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Query error: " + e.Message);
-            }
+
+
 
         }
 
         private void DeleteQuery(string id)
         {
-            string query = "DELETE FROM `test` WHERE `id` = @id ;";
+            string query = "DELETE FROM `test`  WHERE `id` = @id ;";
 
-            string MySQLConnectionString = "DATA ABOUT CONNECTION";
+            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
 
             MySqlConnection DataBaseConnection = new MySqlConnection(MySQLConnectionString);
 
@@ -124,14 +125,18 @@ namespace StockMarket
             commandDataBase.CommandTimeout = 60;
 
             commandDataBase.CommandType = CommandType.Text;
-            commandDataBase.Parameters.Add("@Name", MySqlDbType.VarChar).Value = textBox1.Text;
+            MessageBox.Show("Query successfully executed " + dataGridView1.CurrentRow.Cells[1].Value.ToString());
+            commandDataBase.Parameters.Add("@Name", MySqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             commandDataBase.Parameters.Add("@id", MySqlDbType.Int64).Value = id;
             try
             {
 
                 DataBaseConnection.Open();
                 //commandDataBase.CommandTimeout = 60;
-                MySqlDataReader myReader = commandDataBase.ExecuteReader();
+                if (id != null)
+                {
+                    MySqlDataReader myReader = commandDataBase.ExecuteReader();
+                }
                 DataBaseConnection.Close();
 
                 MessageBox.Show("Query successfully executed");
@@ -146,17 +151,18 @@ namespace StockMarket
 
         public void DisplayAndSearch(string query, DataGridView dgv)
         {
-            
+
             string sql = query;
-            string MySQLConnectionString = "DATA ABOUT CONNECTION";
+            string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=basayd";
             MySqlConnection con = new MySqlConnection(MySQLConnectionString);
             MySqlCommand cmd = new MySqlCommand(sql, con);
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
             DataTable table = new DataTable();
-           
+            
             adp.Fill(table);
             //dgv.DataSource = table;
             dgv.DataSource = table;
+            dgv.Font = new Font("Tahoma", 15);
             con.Close();
 
 
@@ -168,8 +174,29 @@ namespace StockMarket
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {   
+            // if we have at least one row we update current selcted object
+            if (dataGridView1.Rows != null && dataGridView1.Rows.Count != 0)
+            {
+                string id_of_object = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                if (id_of_object == null || dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.Cells[0] == null)
+                {
+
+                    Display();
+                }
+                UpdateQuery(id_of_object);
+                Display();
+            }
+            
+                
             Display();
+        }
+
+        //Remove from data base button
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string id_of_object = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            DeleteQuery(id_of_object);
         }
     }
 }
